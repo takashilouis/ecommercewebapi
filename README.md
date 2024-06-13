@@ -1,7 +1,9 @@
-Schema:
+1.Schema:
 - Product
 - Category
-REST API:
+- Order
+  
+2.REST API:
 - Categories
 - Post a new product
 - Get list of a product
@@ -9,6 +11,8 @@ REST API:
 - Update a product
 - Delete a product
 - Get product count
-User & Authentication
-Orders Management
-Product Image & Gallery Upload
+
+
+3.User & Authentication
+4.Orders Management
+5.Product Image & Gallery Upload
