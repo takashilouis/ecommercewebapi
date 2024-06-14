@@ -1,0 +1,693 @@
+openapi: 3.0.0
+info:
+  title: ecommerce-api
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:3000/api/v1
+  variables: {}
+paths:
+  /products:
+    get:
+      tags:
+      - Misc
+      summary: Get Products
+      operationId: GetProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Products
+      summary: Create Products
+      operationId: CreateProducts
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the product
+                description:
+                  type: string
+                  description: Description of the product
+                richDescription:
+                  type: string
+                  description: Rich description of the product
+                image:  # This is the new part for the image file
+                  type: string
+                  format: binary
+                  description: Image file for the product
+                brand:
+                  type: string
+                  description: Brand of the product
+                price:
+                  type: number
+                  format: float
+                  description: Price of the product
+                category:
+                  type: string
+                  description: Category ID of the product
+                countInStock:
+                  type: integer
+                  description: Number of items in stock
+                rating:
+                  type: integer
+                  description: Rating of the product
+                numReviews:
+                  type: integer
+                  description: Number of reviews
+                isFeatured:
+                  type: boolean
+                  description: If the product is featured
+              required:
+                - name
+                - price
+                - category
+                - countInStock
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /categories/664d1ccdd9057b1192934cc2:
+    put:
+      tags:
+      - Misc
+      summary: Update Categories
+      operationId: UpdateCategories
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateCategoriesRequest'
+              - example:
+                  name: apple-device
+                  icon: icon-appledevice
+                  color: '#666777'
+            example:
+              name: apple-device
+              icon: icon-appledevice
+              color: '#666777'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/664ea7993ff81b73799cfa53:
+    get:
+      tags:
+      - Misc
+      summary: Get Each Product Info
+      operationId: GetEachProductInfo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/664ea7993ff81b73799cfa:
+    put:
+      tags:
+      - Misc
+      summary: Update each product
+      operationId: Updateeachproduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateeachproductRequest'
+              - example:
+                  name: Galaxy S24
+                  description: product 2 description
+                  richDescription: product 2 richDescription
+                  image: product2/image.jpg
+                  brand: Samsung
+                  price: 550
+                  category: 664eb1df498eb091d22e52e7
+                  countInStock: 70
+                  rating: 3
+                  numReviews: 20
+                  isFeatured: true
+            example:
+              name: Galaxy S24
+              description: product 2 description
+              richDescription: product 2 richDescription
+              image: product2/image.jpg
+              brand: Samsung
+              price: 550
+              category: 664eb1df498eb091d22e52e7
+              countInStock: 70
+              rating: 3
+              numReviews: 20
+              isFeatured: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories:
+    get:
+      tags:
+      - Misc
+      summary: Get Categories
+      operationId: GetCategories
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Misc
+      summary: Create Category
+      operationId: CreateCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateCategoryRequest'
+              - example:
+                  name: Sony
+                  icon: icon-sony
+                  color: '#191919'
+            example:
+              name: Sony
+              icon: icon-sony
+              color: '#191919'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - Misc
+      summary: Get User
+      operationId: GetUser
+      parameters: []
+      responses:
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '2'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Fri, 31 May 2024 04:02:04 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                example: {}
+              example: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /orders/666325eb9167f287017a76a2:
+    put:
+      tags:
+      - Misc
+      summary: PUT Update Order
+      operationId: PUTUpdateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PUTUpdateOrderRequest'
+              - example:
+                  status: Processed
+            example:
+              status: Processed
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the order id
+    get:
+      tags:
+      - Misc
+      summary: GET order
+      operationId: GETorder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products/gallery-images/665397e6c7c4f4dcae9daa98:
+    put:
+      tags:
+      - Misc
+      summary: PUT Upload images
+      operationId: PUTUploadimages
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - name
+              - description
+              - richDescription
+              - image
+              - images
+              - brand
+              - price
+              - category
+              - countInStock
+              - rating
+              - numReviews
+              - isFeatured
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Sony Z
+                description:
+                  type: string
+                  example: Product Description
+                richDescription:
+                  type: string
+                  example: Product richDescription
+                image:
+                  type: string
+                  format: binary
+                images:
+                  type: string
+                  format: binary
+                brand:
+                  type: string
+                  example: Sony
+                price:
+                  type: integer
+                  format: int32
+                  example: 1000
+                category:
+                  type: string
+                  example: 66539793c7c4f4dcae9daa95
+                countInStock:
+                  type: integer
+                  format: int32
+                  example: 36
+                rating:
+                  type: integer
+                  format: int32
+                  example: 3
+                numReviews:
+                  type: integer
+                  format: int32
+                  example: 22
+                isFeatured:
+                  type: boolean
+                  example: true
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products/get/count:
+    get:
+      tags:
+      - Products
+      summary: Get Count Products
+      operationId: GetCountProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/register:
+    post:
+      tags:
+      - Authentication
+      summary: Create User
+      operationId: CreateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateUserRequest'
+              - example:
+                  name: Khoi Nguyen
+                  email: louiskhoi@gmail.com
+                  hashPassword: '121092'
+                  phone: '492384443'
+                  isAdmin: false
+                  apartment: Apartment 2505
+                  zipcode: '57042'
+                  city: Santa Clara
+                  country: usa
+            example:
+              name: Khoi Nguyen
+              email: louiskhoi@gmail.com
+              hashPassword: '121092'
+              phone: '492384443'
+              isAdmin: false
+              apartment: Apartment 2505
+              zipcode: '57042'
+              city: Santa Clara
+              country: usa
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/login:
+    post:
+      tags:
+      - Authentication
+      summary: Post Login User
+      operationId: PostLoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PostLoginUserRequest'
+              - example:
+                  email: louiskhoah@gmail.com
+                  password: '1232131'
+            example:
+              email: louiskhoah@gmail.com
+              password: '1232131'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CreateProductsRequest:
+      title: CreateProductsRequest
+      required:
+      - name
+      - description
+      - richDescription
+      - image
+      - brand
+      - price
+      - category
+      - countInStock
+      - rating
+      - numReviews
+      - isFeatured
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        richDescription:
+          type: string
+        image:
+          type: string
+        brand:
+          type: string
+        price:
+          type: integer
+          format: int32
+        category:
+          type: string
+        countInStock:
+          type: integer
+          format: int32
+        rating:
+          type: integer
+          format: int32
+        numReviews:
+          type: integer
+          format: int32
+        isFeatured:
+          type: boolean
+      example:
+        name: product 4
+        description: product 3 description
+        richDescription: product 3 richDescription
+        image: product3/image.jpg
+        brand: Sony
+        price: 550
+        category: 66539793c7c4f4dcae9daa95
+        countInStock: 100
+        rating: 6
+        numReviews: 10
+        isFeatured: true
+    UpdateCategoriesRequest:
+      title: UpdateCategoriesRequest
+      required:
+      - name
+      - icon
+      - color
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+      example:
+        name: apple-device
+        icon: icon-appledevice
+        color: '#666777'
+    UpdateeachproductRequest:
+      title: UpdateeachproductRequest
+      required:
+      - name
+      - description
+      - richDescription
+      - image
+      - brand
+      - price
+      - category
+      - countInStock
+      - rating
+      - numReviews
+      - isFeatured
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        richDescription:
+          type: string
+        image:
+          type: string
+        brand:
+          type: string
+        price:
+          type: integer
+          format: int32
+        category:
+          type: string
+        countInStock:
+          type: integer
+          format: int32
+        rating:
+          type: integer
+          format: int32
+        numReviews:
+          type: integer
+          format: int32
+        isFeatured:
+          type: boolean
+      example:
+        name: Galaxy S24
+        description: product 2 description
+        richDescription: product 2 richDescription
+        image: product2/image.jpg
+        brand: Samsung
+        price: 550
+        category: 664eb1df498eb091d22e52e7
+        countInStock: 70
+        rating: 3
+        numReviews: 20
+        isFeatured: true
+    CreateCategoryRequest:
+      title: CreateCategoryRequest
+      required:
+      - name
+      - icon
+      - color
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+      example:
+        name: Sony
+        icon: icon-sony
+        color: '#191919'
+    CreateUserRequest:
+      title: CreateUserRequest
+      required:
+      - name
+      - email
+      - hashPassword
+      - phone
+      - isAdmin
+      - apartment
+      - zipcode
+      - city
+      - country
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        hashPassword:
+          type: string
+        phone:
+          type: string
+        isAdmin:
+          type: boolean
+        apartment:
+          type: string
+        zipcode:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+      example:
+        name: Khoi Nguyen
+        email: louiskhoi@gmail.com
+        hashPassword: '121092'
+        phone: '492384443'
+        isAdmin: false
+        apartment: Apartment 2505
+        zipcode: '57042'
+        city: Santa Clara
+        country: usa
+    PostLoginUserRequest:
+      title: PostLoginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: louiskhoah@gmail.com
+        password: '1232131'
+    PUTUpdateOrderRequest:
+      title: PUTUpdateOrderRequest
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+      example:
+        status: Processed
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Misc
+  description: ''
+- name: Products
+  description: ''
+- name: Authentication
+  description: ''

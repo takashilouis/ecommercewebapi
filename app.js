@@ -16,6 +16,13 @@ app.use(morgan('dev'));
 app.use(authJwt());
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 app.use(errorHandler);
+
+// Swagger
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+console.log(swaggerDocument)
+
 //routers
 const productsRouter = require('./routers/products')
 const categoriesRouter = require('./routers/categories')
@@ -23,6 +30,11 @@ const userRouter = require('./routers/users')
 const ordersRouter = require('./routers/orders')
 const api = process.env.API_URL;
 
+app.get('/', (req, res) => {
+    res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>');
+});
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 app.use(`${api}/products`,productsRouter)
 app.use(`${api}/categories`,categoriesRouter)
 app.use(`${api}/users`,userRouter)

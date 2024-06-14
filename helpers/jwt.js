@@ -16,21 +16,13 @@ function authJwt(){
             {url: /\/api\/v1\/categories(.*)/, methods: ['GET', 'OPTIONS'] },
             {url: /\/api\/v1\/orders(.*)/,methods: ['GET', 'OPTIONS', 'POST']},
             `${api}/users/login`,
-            `${api}/users/register`
+            `${api}/users/register`,
+            `/`,
+            /^\/api-docs\/?(.*)/
         ]
     })
 }
 
-// async function isRevoked(req, payload, done) {
-//     console.log("isRevoked function")
-//     if (!payload.isAdmin) {
-//         console.log("Revoked")
-//         done(null, true);
-//     } else {
-//         console.log("Not Revoked")
-//         done(null, false);
-//     }
-// }
 function isRevoked(req, payload, done) {
     console.log("JWT Payload:", payload);
     // if (!payload.isAdmin) {
